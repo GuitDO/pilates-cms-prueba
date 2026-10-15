@@ -452,9 +452,23 @@
             ? "$" + Number(producto.price).toLocaleString("es-AR")
             : "Consultar precio";
 
-          info.append(nombre, descripcion, precio);
-          tarjeta.appendChild(info);
-          contenedor.appendChild(tarjeta);
+          const botonWhatsApp = document.createElement("a");
+botonWhatsApp.className = "boton";
+botonWhatsApp.textContent = "Consultar por WhatsApp";
+botonWhatsApp.href =
+  "https://wa.me/5492236945142?text=" +
+  encodeURIComponent(
+    "¡Hola! Quisiera consultar por el producto: " +
+    (producto.name || "Producto") +
+    ". ¿Me podrían dar más información?"
+  );
+botonWhatsApp.target = "_blank";
+botonWhatsApp.rel = "noopener noreferrer";
+botonWhatsApp.style.marginTop = "15px";
+
+info.append(nombre, descripcion, precio, botonWhatsApp);
+tarjeta.appendChild(info);
+contenedor.appendChild(tarjeta);
         });
       } catch (error) {
         console.error("Error al cargar productos:", error);
