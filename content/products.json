@@ -5,6 +5,12 @@
       "price": 1000,
       "description": "super cómodo ",
       "image": "/uploads/descarga-1-.jpg"
+    },
+    {
+      "name": "Colchoneta (Mat)",
+      "price": 200,
+      "description": "rojas,negras.",
+      "image": "/uploads/whatsapp-image-2026-10-06-at-7.50.07-pm.jpeg"
     }
   ]
 }
