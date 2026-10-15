@@ -1,3 +1,10 @@
 {
-  "products": []
+  "products": [
+    {
+      "name": "Reformador de Pilates de prueba",
+      "price": 1000,
+      "description": "super cómodo ",
+      "image": "/uploads/descarga-1-.jpg"
+    }
+  ]
 }
