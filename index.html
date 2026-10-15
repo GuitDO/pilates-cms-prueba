@@ -3,10 +3,467 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alma Pilates 2025</title>
+  <meta name="theme-color" content="#f7f1e8">
+  <meta name="description" content="Alma Pilates 2025: equipamiento y accesorios de Pilates.">
+  <title>Alma Pilates 2025 | Bienestar en movimiento</title>
+
+  <style>
+    :root {
+      --crema: #f7f1e8;
+      --beige: #e9ddcd;
+      --arena: #d4bda2;
+      --marron: #715b48;
+      --oscuro: #40372f;
+      --blanco: #fffdf9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--crema);
+      color: var(--oscuro);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .barra-superior {
+      background: var(--marron);
+      color: white;
+      text-align: center;
+      padding: 9px 15px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    header {
+      background: var(--crema);
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid var(--beige);
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      letter-spacing: 1px;
+      color: var(--marron);
+    }
+
+    .logo span {
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-align: center;
+      margin-top: 2px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      font-size: 13px;
+    }
+
+    nav a:hover {
+      color: var(--marron);
+    }
+
+    .boton {
+      display: inline-block;
+      padding: 13px 23px;
+      background: var(--marron);
+      color: white;
+      border-radius: 3px;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+
+    .boton:hover {
+      background: var(--oscuro);
+    }
+
+    .portada {
+      min-height: 490px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 45px;
+      padding: 65px 9%;
+    }
+
+    .etiqueta {
+      color: var(--marron);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: normal;
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(42px, 5vw, 66px);
+      margin-bottom: 22px;
+    }
+
+    h1 em {
+      color: var(--marron);
+      font-weight: normal;
+    }
+
+    .texto-portada {
+      max-width: 420px;
+      color: #74695e;
+      font-size: 15px;
+      margin-bottom: 28px;
+    }
+
+    .imagen-portada {
+      min-height: 355px;
+      background: var(--beige);
+      border-radius: 48% 48% 4px 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px;
+      overflow: hidden;
+    }
+
+    .imagen-portada .flor {
+      font-size: 75px;
+      color: var(--marron);
+      line-height: 1.2;
+    }
+
+    .imagen-portada p {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      color: var(--marron);
+      margin-top: 20px;
+    }
+
+    .imagen-portada small {
+      color: var(--marron);
+      letter-spacing: 3px;
+      font-size: 10px;
+      margin-top: 8px;
+    }
+
+    .franja {
+      background: var(--beige);
+      padding: 22px 15px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 35px;
+      color: var(--marron);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .catalogo {
+      padding: 85px 7%;
+      text-align: center;
+    }
+
+    .catalogo h2, .nosotros h2, .contacto h2 {
+      font-size: clamp(32px, 4vw, 43px);
+      margin-bottom: 15px;
+    }
+
+    .subtitulo {
+      color: #817366;
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+      text-align: left;
+    }
+
+    .producto {
+      background: var(--blanco);
+      padding-bottom: 22px;
+      border: 1px solid #eee5da;
+    }
+
+    .producto img {
+      width: 100%;
+      height: 245px;
+      object-fit: cover;
+      display: block;
+      background: var(--beige);
+    }
+
+    .producto-info {
+      padding: 18px 18px 0;
+    }
+
+    .producto h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      font-weight: normal;
+      margin-bottom: 8px;
+    }
+
+    .producto .descripcion {
+      font-size: 13px;
+      color: #817366;
+      margin-bottom: 12px;
+    }
+
+    .producto .precio {
+      color: var(--marron);
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .sin-productos {
+      grid-column: 1 / -1;
+      padding: 35px 20px;
+      border: 1px dashed var(--arena);
+      color: #817366;
+      text-align: center;
+    }
+
+    .nosotros {
+      background: var(--beige);
+      text-align: center;
+      padding: 75px 8%;
+    }
+
+    .nosotros p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: #6f6256;
+      font-size: 15px;
+    }
+
+    .contacto {
+      text-align: center;
+      padding: 75px 20px;
+    }
+
+    .contacto p {
+      color: #817366;
+      margin: 0 auto 25px;
+      max-width: 500px;
+    }
+
+    footer {
+      background: var(--oscuro);
+      color: #f7f1e8;
+      padding: 30px 7%;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    footer .logo {
+      color: var(--crema);
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 750px) {
+      header {
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .portada {
+        grid-template-columns: 1fr;
+        padding: 45px 7%;
+        gap: 30px;
+      }
+
+      .imagen-portada {
+        min-height: 270px;
+      }
+
+      .productos {
+        grid-template-columns: 1fr;
+      }
+
+      .producto img {
+        height: 270px;
+      }
+
+      .franja {
+        gap: 12px 22px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Alma Pilates 2025</h1>
-  <p>Equipamiento y accesorios de Pilates para acompañar tu práctica y bienestar.</p>
+  <div class="barra-superior">
+    EQUILIBRIO · MOVIMIENTO · BIENESTAR
+  </div>
+
+  <header>
+    <a class="logo" href="#">
+      Alma Pilates
+      <span>2025</span>
+    </a>
+
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#catalogo">Productos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="portada" id="inicio">
+      <div>
+        <p class="etiqueta">Tu espacio de bienestar</p>
+        <h1>Encontrá tu<br>equilibrio con <em>Alma.</em></h1>
+        <p class="texto-portada">
+          Equipamiento y accesorios de Pilates pensados para acompañarte
+          en cada movimiento y transformar tu práctica en un momento para vos.
+        </p>
+        <a class="boton" href="#catalogo">Descubrir productos</a>
+      </div>
+
+      <div class="imagen-portada">
+        <div class="flor">✳</div>
+        <p>Movimiento con propósito</p>
+        <small>ALMA PILATES 2025</small>
+      </div>
+    </section>
+
+    <div class="franja">
+      <span>✳ CALIDAD Y BIENESTAR</span>
+      <span>✳ MOVIMIENTO CONSCIENTE</span>
+      <span>✳ EQUIPAMIENTO PILATES</span>
+    </div>
+
+    <section class="catalogo" id="catalogo">
+      <p class="etiqueta">Nuestra selección</p>
+      <h2>Productos destacados</h2>
+      <p class="subtitulo">
+        Encontrá todo lo que necesitás para acompañar tu práctica.
+      </p>
+
+      <div class="productos" id="lista-productos">
+        <p class="sin-productos">
+          Próximamente vas a encontrar nuestros productos acá.
+        </p>
+      </div>
+    </section>
+
+    <section class="nosotros" id="nosotros">
+      <p class="etiqueta">Nuestra esencia</p>
+      <h2>Bienestar en cada movimiento</h2>
+      <p>
+        En Alma Pilates creemos que cada movimiento es una oportunidad
+        para conectar con vos. Queremos acompañarte con equipamiento
+        y accesorios que formen parte de tu camino hacia el bienestar.
+      </p>
+    </section>
+
+    <section class="contacto" id="contacto">
+      <p class="etiqueta">Estamos para ayudarte</p>
+      <h2>¿Buscás algo especial?</h2>
+      <p>
+        Conocé nuestros productos y encontrá el equipamiento ideal
+        para acompañar tu práctica de Pilates.
+      </p>
+      <a class="boton" href="#catalogo">Ver catálogo</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="logo">Alma Pilates <span>2025</span></div>
+    <p>Bienestar en movimiento.</p>
+  </footer>
+
+  <script>
+    async function cargarProductos() {
+      const contenedor = document.getElementById("lista-productos");
+
+      try {
+        const respuesta = await fetch("/content/products.json");
+        if (!respuesta.ok) throw new Error("No se pudo cargar el catálogo");
+
+        const datos = await respuesta.json();
+        const productos = datos.products || [];
+
+        if (productos.length === 0) return;
+
+        contenedor.innerHTML = "";
+
+        productos.forEach(producto => {
+          const tarjeta = document.createElement("article");
+          tarjeta.className = "producto";
+
+          if (producto.image) {
+            const imagen = document.createElement("img");
+            imagen.src = producto.image;
+            imagen.alt = producto.name || "Producto de Pilates";
+            tarjeta.appendChild(imagen);
+          }
+
+          const info = document.createElement("div");
+          info.className = "producto-info";
+
+          const nombre = document.createElement("h3");
+          nombre.textContent = producto.name || "Producto";
+
+          const descripcion = document.createElement("p");
+          descripcion.className = "descripcion";
+          descripcion.textContent = producto.description || "";
+
+          const precio = document.createElement("p");
+          precio.className = "precio";
+          precio.textContent = producto.price != null
+            ? "$" + Number(producto.price).toLocaleString("es-AR")
+            : "Consultar precio";
+
+          info.append(nombre, descripcion, precio);
+          tarjeta.appendChild(info);
+          contenedor.appendChild(tarjeta);
+        });
+      } catch (error) {
+        console.error("Error al cargar productos:", error);
+        contenedor.innerHTML =
+          '<p class="sin-productos">Estamos preparando nuestro catálogo. Volvé a visitarnos pronto.</p>';
+      }
+    }
+
+    cargarProductos();
+  </script>
 </body>
 </html>
