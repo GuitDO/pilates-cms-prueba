@@ -119,78 +119,57 @@
   color: #218c52;
 }
 
-    .portada {
-      min-height: 490px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 45px;
-      padding: 65px 9%;
-    }
+    .portada > div:first-child {
+  animation: aparecerTexto 1s ease-out both;
+}
 
-    .etiqueta {
-      color: var(--marron);
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
+.imagen-portada {
+  animation: aparecerPanel 1.2s ease-out both;
+}
 
-    h1, h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: normal;
-      line-height: 1.15;
-    }
+.imagen-portada .flor {
+  animation: movimientoFlor 4s ease-in-out infinite;
+}
 
-    h1 {
-      font-size: clamp(42px, 5vw, 66px);
-      margin-bottom: 22px;
-    }
+@keyframes aparecerTexto {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    h1 em {
-      color: var(--marron);
-      font-weight: normal;
-    }
+@keyframes aparecerPanel {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
-    .texto-portada {
-      max-width: 420px;
-      color: #74695e;
-      font-size: 15px;
-      margin-bottom: 28px;
-    }
+@keyframes movimientoFlor {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
 
-    .imagen-portada {
-      min-height: 355px;
-      background: var(--beige);
-      border-radius: 48% 48% 4px 4px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 30px;
-      overflow: hidden;
-    }
-
-    .imagen-portada .flor {
-      font-size: 75px;
-      color: var(--marron);
-      line-height: 1.2;
-    }
-
-    .imagen-portada p {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 23px;
-      color: var(--marron);
-      margin-top: 20px;
-    }
-
-    .imagen-portada small {
-      color: var(--marron);
-      letter-spacing: 3px;
-      font-size: 10px;
-      margin-top: 8px;
-    }
+/* Evita animaciones si el visitante las tiene desactivadas */
+@media (prefers-reduced-motion: reduce) {
+  .portada > div:first-child,
+  .imagen-portada,
+  .imagen-portada .flor {
+    animation: none;
+  }
+}
 
     .franja {
       background: var(--beige);
