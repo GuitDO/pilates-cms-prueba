@@ -824,6 +824,72 @@
   }
 
   cargarProductos();
+
+  // VISOR DE IMÁGENES AMPLIADAS
+
+const visor = document.getElementById("visor-imagen");
+const imagenAmpliada = document.getElementById("imagen-ampliada");
+const cerrarVisor = document.getElementById("cerrar-visor");
+const anteriorVisor = document.getElementById("anterior-visor");
+const siguienteVisor = document.getElementById("siguiente-visor");
+const contadorVisor = document.getElementById("contador-visor");
+
+let imagenesVisor = [];
+let indiceVisor = 0;
+
+function mostrarImagenAmpliada() {
+  imagenAmpliada.src = imagenesVisor[indiceVisor];
+  contadorVisor.textContent =
+    (indiceVisor + 1) + " / " + imagenesVisor.length;
+}
+
+function abrirVisor(listaImagenes, indice) {
+  imagenesVisor = listaImagenes;
+  indiceVisor = indice;
+
+  mostrarImagenAmpliada();
+
+  visor.classList.add("activo");
+  visor.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function cerrarVentanaImagen() {
+  visor.classList.remove("activo");
+  visor.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  imagenAmpliada.src = "";
+}
+
+cerrarVisor.addEventListener("click", cerrarVentanaImagen);
+
+anteriorVisor.addEventListener("click", () => {
+  indiceVisor =
+    (indiceVisor - 1 + imagenesVisor.length) % imagenesVisor.length;
+  mostrarImagenAmpliada();
+});
+
+siguienteVisor.addEventListener("click", () => {
+  indiceVisor = (indiceVisor + 1) % imagenesVisor.length;
+  mostrarImagenAmpliada();
+});
+
+visor.addEventListener("click", (evento) => {
+  if (evento.target === visor) {
+    cerrarVentanaImagen();
+  }
+});
+
+document.addEventListener("keydown", (evento) => {
+  if (!visor.classList.contains("activo")) return;
+
+  if (evento.key === "Escape") cerrarVentanaImagen();
+
+  if (evento.key === "ArrowRight") siguienteVisor.click();
+
+  if (evento.key === "ArrowLeft") anteriorVisor.click();
+});
+  
 </script>
   <!-- VISOR DE IMÁGENES AMPLIADAS -->
 <div class="visor-imagen" id="visor-imagen" aria-hidden="true">
