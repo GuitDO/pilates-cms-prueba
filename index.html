@@ -637,6 +637,47 @@
   color: white;
   font-size: 13px;
 }
+    /* ANUNCIO NUEVO INGRESO */
+.imagen-portada.anuncio-chair {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+  padding: 35px 25px;
+}
+
+.logo-anuncio {
+  width: 145px;
+  max-height: 190px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.etiqueta-anuncio {
+  color: #a58b70;
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin: 8px 0 0;
+}
+
+.anuncio-chair h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: normal;
+  color: var(--marron);
+  margin: 0;
+}
+
+.texto-anuncio {
+  color: #817366;
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 330px;
+  margin: 0;
+}
+    
     
     
   </style>
@@ -672,12 +713,24 @@
         <a class="boton" href="#catalogo">Descubrir productos</a>
       </div>
 
-      <div class="imagen-portada">
-        <div class="flor">✳</div>
-        <p>Movimiento con propósito</p>
-        <small>ALMA PILATES </small>
-      </div>
-    </section>
+      
+      <div class="imagen-portada anuncio-chair">
+  <img
+    class="logo-anuncio"
+    src="/uploads/alma-pilates-logo.jpg"
+    alt="Alma Pilates"
+  >
+
+  <p class="etiqueta-anuncio">✦ NUEVO INGRESO ✦</p>
+
+  <h2>¡Llegó la Chair!</h2>
+
+  <p class="texto-anuncio">
+    Un nuevo equipo se suma a Alma Pilates
+    para acompañar cada movimiento.
+  </p>
+
+</div>
 
     <div class="franja">
       <span>✳ CALIDAD Y BIENESTAR</span>
