@@ -37,14 +37,14 @@ collections:
                 widget: "list"
                 required: false
                 field:
-                label: "Fotografía"
-                 name: "image"
-                 widget: "image"
+                  label: "Fotografía"
+                  name: "image"
+                  widget: "image"
               - name: "videos"
                 label: "Videos del producto"
                 widget: "list"
                 required: false
                 field:
-                label: "Video"
-                 name: "video"
-                widget: "file"
+                  label: "Video"
+                  name: "video"
+                  widget: "file"
