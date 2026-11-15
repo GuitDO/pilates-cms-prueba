@@ -639,30 +639,33 @@
 }
     /* ANUNCIO NUEVO INGRESO */
 .imagen-portada.anuncio-chair {
+  min-height: 355px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   gap: 14px;
-  padding: 35px 25px;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
-.logo-anuncio {
-  width: 145px;
-  max-height: 190px;
+.imagen-portada.anuncio-chair .logo-anuncio {
+  width: 125px;
+  max-height: 155px;
   object-fit: contain;
   mix-blend-mode: multiply;
 }
 
-.etiqueta-anuncio {
+.imagen-portada.anuncio-chair p.etiqueta-anuncio {
+  font-family: Arial, sans-serif;
   color: #a58b70;
   font-size: 11px;
   letter-spacing: 3px;
-  margin: 8px 0 0;
+  margin: 5px 0;
 }
 
-.anuncio-chair h2 {
+.imagen-portada.anuncio-chair h2 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(28px, 3vw, 38px);
   font-weight: normal;
@@ -670,15 +673,14 @@
   margin: 0;
 }
 
-.texto-anuncio {
+.imagen-portada.anuncio-chair p.texto-anuncio {
+  font-family: Arial, sans-serif;
   color: #817366;
   font-size: 14px;
   line-height: 1.8;
   max-width: 330px;
   margin: 0;
 }
-    
-    
     
   </style>
 </head>
