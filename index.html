@@ -879,8 +879,9 @@ visor.addEventListener("click", (evento) => {
     cerrarVentanaImagen();
   }
 });
-
-document.addEventListener("keydown", (evento) => {
+  
+</script>
+  document.addEventListener("keydown", (evento) => {
   if (!visor.classList.contains("activo")) return;
 
   if (evento.key === "Escape") cerrarVentanaImagen();
@@ -903,6 +904,5 @@ document.addEventListener("keydown", (evento) => {
   <span class="contador-visor" id="contador-visor"></span>
 </div>
   
-</script>
 </body>
 </html>
