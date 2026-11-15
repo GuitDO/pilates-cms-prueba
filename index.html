@@ -920,6 +920,7 @@
 
 const visor = document.getElementById("visor-imagen");
 const imagenAmpliada = document.getElementById("imagen-ampliada");
+const videoAmpliado = document.getElementById("video-ampliado");
 const cerrarVisor = document.getElementById("cerrar-visor");
 const anteriorVisor = document.getElementById("anterior-visor");
 const siguienteVisor = document.getElementById("siguiente-visor");
@@ -938,11 +939,35 @@ function abrirVisor(listaImagenes, indice) {
   imagenesVisor = listaImagenes;
   indiceVisor = indice;
 
-  mostrarImagenAmpliada();
+  videoAmpliado.pause();
+  videoAmpliado.style.display = "none";
+  videoAmpliado.removeAttribute("src");
+
+  imagenAmpliada.style.display = "block";
+  imagenAmpliada.src = imagenesVisor[indiceVisor];
+
+  contadorVisor.textContent =
+    (indiceVisor + 1) + " / " + imagenesVisor.length;
 
   visor.classList.add("activo");
   visor.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
+}
+
+function abrirVideo(rutaVideo) {
+  imagenAmpliada.style.display = "none";
+  imagenAmpliada.src = "";
+
+  videoAmpliado.src = rutaVideo;
+  videoAmpliado.style.display = "block";
+
+  contadorVisor.textContent = "";
+
+  visor.classList.add("activo");
+  visor.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+
+  videoAmpliado.play();
 }
 
 function cerrarVentanaImagen() {
@@ -981,8 +1006,6 @@ visor.addEventListener("click", (evento) => {
   if (evento.key === "ArrowLeft") anteriorVisor.click();
 });
 
-  
-  
 </script>
 </body>
 </html>
