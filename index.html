@@ -790,40 +790,43 @@
           const contador = document.createElement("span");
           contador.className = "contador-galeria";
 
-          function actualizarGaleria() {
-            contenido.innerHTML = "";
+         
+function actualizarGaleria() {
+  contenido.innerHTML = "";
 
-            const elemento = elementosGaleria[indiceActual];
+  const elemento = elementosGaleria[indiceActual];
 
-            if (elemento.tipo === "imagen") {
-  const imagen = document.createElement("img");
-  imagen.src = elemento.ruta;
-  imagen.alt = producto.name || "Producto de Pilates";
-  imagen.style.cursor = "zoom-in";
+  if (elemento.tipo === "imagen") {
+    const imagen = document.createElement("img");
+    imagen.src = elemento.ruta;
+    imagen.alt = producto.name || "Producto de Pilates";
+    imagen.style.cursor = "zoom-in";
 
-  imagen.addEventListener("click", () => {
-    abrirVisor(imagenes, imagenes.indexOf(elemento.ruta));
-  });
+    imagen.addEventListener("click", () => {
+      abrirVisor(elementosGaleria, indiceActual);
+    });
 
-  contenido.appendChild(imagen);
-} else {
-  const video = document.createElement("video");
-  video.src = elemento.ruta;
-  video.playsInline = true;
-  video.preload = "metadata";
-  video.controls = false;
-  video.style.cursor = "zoom-in";
+    contenido.appendChild(imagen);
 
-  video.addEventListener("click", () => {
-    abrirVideo(elemento.ruta);
-  });
+  } else {
+    const video = document.createElement("video");
+    video.src = elemento.ruta;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.controls = false;
+    video.style.cursor = "zoom-in";
 
-  contenido.appendChild(video);
+    video.addEventListener("click", () => {
+      abrirVisor(elementosGaleria, indiceActual);
+    });
+
+    contenido.appendChild(video);
+  }
+
+  contador.textContent =
+    (indiceActual + 1) + " / " + elementosGaleria.length;
 }
-
-            contador.textContent =
-              (indiceActual + 1) + " / " + elementosGaleria.length;
-          }
+          
 
           if (elementosGaleria.length > 1) {
             const anterior = document.createElement("button");
@@ -924,28 +927,40 @@ const anteriorVisor = document.getElementById("anterior-visor");
 const siguienteVisor = document.getElementById("siguiente-visor");
 const contadorVisor = document.getElementById("contador-visor");
 
-let imagenesVisor = [];
+let elementosVisor = [];
 let indiceVisor = 0;
 
-function mostrarImagenAmpliada() {
-  imagenAmpliada.src = imagenesVisor[indiceVisor];
+function mostrarElementoAmpliado() {
+  const elemento = elementosVisor[indiceVisor];
+
+  if (elemento.tipo === "imagen") {
+    videoAmpliado.pause();
+    videoAmpliado.removeAttribute("src");
+    videoAmpliado.load();
+    videoAmpliado.style.display = "none";
+
+    imagenAmpliada.src = elemento.ruta;
+    imagenAmpliada.style.display = "block";
+
+  } else {
+    imagenAmpliada.src = "";
+    imagenAmpliada.style.display = "none";
+
+    videoAmpliado.src = elemento.ruta;
+    videoAmpliado.style.display = "block";
+    videoAmpliado.load();
+    videoAmpliado.play().catch(() => {});
+  }
+
   contadorVisor.textContent =
-    (indiceVisor + 1) + " / " + imagenesVisor.length;
+    (indiceVisor + 1) + " / " + elementosVisor.length;
 }
 
-function abrirVisor(listaImagenes, indice) {
-  imagenesVisor = listaImagenes;
+function abrirVisor(listaElementos, indice) {
+  elementosVisor = listaElementos;
   indiceVisor = indice;
 
-  videoAmpliado.pause();
-  videoAmpliado.style.display = "none";
-  videoAmpliado.removeAttribute("src");
-
-  imagenAmpliada.style.display = "block";
-  imagenAmpliada.src = imagenesVisor[indiceVisor];
-
-  contadorVisor.textContent =
-    (indiceVisor + 1) + " / " + imagenesVisor.length;
+  mostrarElementoAmpliado();
 
   visor.classList.add("activo");
   visor.setAttribute("aria-hidden", "false");
@@ -986,13 +1001,16 @@ cerrarVisor.addEventListener("click", cerrarVentanaImagen);
 
 anteriorVisor.addEventListener("click", () => {
   indiceVisor =
-    (indiceVisor - 1 + imagenesVisor.length) % imagenesVisor.length;
-  mostrarImagenAmpliada();
+    (indiceVisor - 1 + elementosVisor.length) % elementosVisor.length;
+
+  mostrarElementoAmpliado();
 });
 
 siguienteVisor.addEventListener("click", () => {
-  indiceVisor = (indiceVisor + 1) % imagenesVisor.length;
-  mostrarImagenAmpliada();
+  indiceVisor =
+    (indiceVisor + 1) % elementosVisor.length;
+
+  mostrarElementoAmpliado();
 });
 
 visor.addEventListener("click", (evento) => {
