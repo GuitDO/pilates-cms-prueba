@@ -32,3 +32,23 @@ collections:
                 label: "Fotografía"
                 widget: "image"
                 required: false
+                - name: "image"
+                label: "Fotografía principal"
+                widget: "image"
+                required: false
+              - name: "images"
+                label: "Otras fotografías"
+                widget: "list"
+                required: false
+                field:
+                label: "Fotografía"
+                name: "image"
+                widget: "image"
+              - name: "videos"
+                label: "Videos del producto"
+                widget: "list"
+                required: false
+                field:
+                label: "Video"
+                name: "video"
+                widget: "file"
