@@ -713,18 +713,24 @@
             const elemento = elementosGaleria[indiceActual];
 
             if (elemento.tipo === "imagen") {
-              const imagen = document.createElement("img");
-              imagen.src = elemento.ruta;
-              imagen.alt = producto.name || "Producto de Pilates";
-              contenido.appendChild(imagen);
-            } else {
-              const video = document.createElement("video");
-              video.src = elemento.ruta;
-              video.controls = true;
-              video.playsInline = true;
-              video.preload = "metadata";
-              contenido.appendChild(video);
-            }
+  const imagen = document.createElement("img");
+  imagen.src = elemento.ruta;
+  imagen.alt = producto.name || "Producto de Pilates";
+  imagen.style.cursor = "zoom-in";
+
+  imagen.addEventListener("click", () => {
+    abrirVisor(imagenes, imagenes.indexOf(elemento.ruta));
+  });
+
+  contenido.appendChild(imagen);
+} else {
+  const video = document.createElement("video");
+  video.src = elemento.ruta;
+  video.controls = true;
+  video.playsInline = true;
+  video.preload = "metadata";
+  contenido.appendChild(video);
+}
 
             contador.textContent =
               (indiceActual + 1) + " / " + elementosGaleria.length;
