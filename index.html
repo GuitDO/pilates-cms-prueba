@@ -571,6 +571,73 @@
     height: 200px;
   }
 }
+
+    /* VISOR DE IMÁGENES AMPLIADAS */
+.visor-imagen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(40, 34, 29, 0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.visor-imagen.activo {
+  display: flex;
+}
+
+#imagen-ampliada {
+  max-width: 85%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.cerrar-visor,
+.flecha-visor {
+  position: absolute;
+  border: none;
+  background: rgba(255, 253, 249, 0.95);
+  color: var(--marron);
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10000;
+}
+
+.cerrar-visor {
+  top: 25px;
+  right: 30px;
+  width: 42px;
+  height: 42px;
+  font-size: 28px;
+}
+
+.flecha-visor {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  font-size: 30px;
+}
+
+.anterior-visor {
+  left: 25px;
+}
+
+.siguiente-visor {
+  right: 25px;
+}
+
+.contador-visor {
+  position: absolute;
+  bottom: 25px;
+  color: white;
+  font-size: 13px;
+}
+    
     
   </style>
 </head>
