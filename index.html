@@ -810,6 +810,14 @@
   video.controls = true;
   video.playsInline = true;
   video.preload = "metadata";
+  video.style.cursor = "zoom-in";
+
+  video.addEventListener("click", (evento) => {
+    if (evento.target === video) {
+      abrirVideo(elemento.ruta);
+    }
+  });
+
   contenido.appendChild(video);
 }
 
