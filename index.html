@@ -974,7 +974,14 @@ function cerrarVentanaImagen() {
   visor.classList.remove("activo");
   visor.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+
   imagenAmpliada.src = "";
+  imagenAmpliada.style.display = "block";
+
+  videoAmpliado.pause();
+  videoAmpliado.removeAttribute("src");
+  videoAmpliado.load();
+  videoAmpliado.style.display = "none";
 }
 
 cerrarVisor.addEventListener("click", cerrarVentanaImagen);
