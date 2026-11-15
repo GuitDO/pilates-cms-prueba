@@ -28,7 +28,7 @@ collections:
               - name: "description"
                 label: "Descripción"
                 widget: "text"
-                 - name: "image"
+              - name: "image"
                 label: "Fotografía"
                 widget: "image"
                 required: false
