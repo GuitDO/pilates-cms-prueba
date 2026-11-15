@@ -4,7 +4,13 @@
       "name": "Reformador de Pilates de prueba",
       "price": 1000,
       "description": "super cómodo ",
-      "image": "/uploads/photoroom_20261113_142950.jpg"
+      "image": "/uploads/photoroom_20261113_142950.jpg",
+      "images": [
+        "/uploads/photoroom_20261113_142246.jpg"
+      ],
+      "videos": [
+        "/uploads/247db5f0-64b4-41d3-9102-9f065bd2e072.mp4"
+      ]
     },
     {
       "name": "Colchoneta (Mat)",
