@@ -6,7 +6,8 @@
       "description": "super cómodo ",
       "image": "/uploads/photoroom_20261113_142950.jpg",
       "images": [
-        "/uploads/photoroom_20261113_142246.jpg"
+        "/uploads/photoroom_20261113_142246.jpg",
+        "/uploads/b10d0cca-6f37-4b8e-b35e-3f2c12212167.jpg"
       ],
       "videos": [
         "/uploads/247db5f0-64b4-41d3-9102-9f065bd2e072.mp4"
@@ -17,6 +18,7 @@
       "price": 200,
       "description": "color rosa.",
       "image": "/uploads/1-d11ffd37273b157f4917615777683403-1024-1024.webp"
-    }
+    },
+    {}
   ]
 }
