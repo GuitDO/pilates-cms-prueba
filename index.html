@@ -960,9 +960,8 @@ visor.addEventListener("click", (evento) => {
     cerrarVentanaImagen();
   }
 });
-  
-</script>
-  document.addEventListener("keydown", (evento) => {
+
+    document.addEventListener("keydown", (evento) => {
   if (!visor.classList.contains("activo")) return;
 
   if (evento.key === "Escape") cerrarVentanaImagen();
@@ -971,6 +970,9 @@ visor.addEventListener("click", (evento) => {
 
   if (evento.key === "ArrowLeft") anteriorVisor.click();
 });
+
   
+  
+</script>
 </body>
 </html>
