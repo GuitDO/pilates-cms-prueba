@@ -730,27 +730,7 @@
         info.append(nombre, descripcion, precio, botonWhatsApp);
         tarjeta.appendChild(info);
 
-        // VIDEOS DEL PRODUCTO
-        const videos = Array.isArray(producto.videos)
-          ? producto.videos.filter(Boolean)
-          : [];
-
-        if (videos.length > 0) {
-          const contenedorVideos = document.createElement("div");
-          contenedorVideos.className = "videos-producto";
-
-          videos.forEach(rutaVideo => {
-            const video = document.createElement("video");
-            video.controls = true;
-            video.playsInline = true;
-            video.preload = "metadata";
-            video.src = rutaVideo;
-
-            contenedorVideos.appendChild(video);
-          });
-
-          tarjeta.appendChild(contenedorVideos);
-        }
+     
 
         contenedor.appendChild(tarjeta);
       });
