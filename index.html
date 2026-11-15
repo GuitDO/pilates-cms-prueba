@@ -610,54 +610,82 @@
           imagen && lista.indexOf(imagen) === indice
         );
 
-        if (imagenes.length > 0) {
+        const videos = Array.isArray(producto.videos)
+          ? producto.videos.filter(Boolean)
+          : [];
+
+        const elementosGaleria = [
+          ...imagenes.map(ruta => ({ tipo: "imagen", ruta })),
+          ...videos.map(ruta => ({ tipo: "video", ruta }))
+        ];
+
+        if (elementosGaleria.length > 0) {
           const galeria = document.createElement("div");
           galeria.className = "galeria-producto";
 
-          const imagen = document.createElement("img");
-          imagen.src = imagenes[0];
-          imagen.alt = producto.name || "Producto de Pilates";
-          galeria.appendChild(imagen);
+          const contenido = document.createElement("div");
+          contenido.className = "contenido-galeria";
+          galeria.appendChild(contenido);
 
-          if (imagenes.length > 1) {
-            let indiceActual = 0;
+          let indiceActual = 0;
 
+          const contador = document.createElement("span");
+          contador.className = "contador-galeria";
+
+          function actualizarGaleria() {
+            contenido.innerHTML = "";
+
+            const elemento = elementosGaleria[indiceActual];
+
+            if (elemento.tipo === "imagen") {
+              const imagen = document.createElement("img");
+              imagen.src = elemento.ruta;
+              imagen.alt = producto.name || "Producto de Pilates";
+              contenido.appendChild(imagen);
+            } else {
+              const video = document.createElement("video");
+              video.src = elemento.ruta;
+              video.controls = true;
+              video.playsInline = true;
+              video.preload = "metadata";
+              contenido.appendChild(video);
+            }
+
+            contador.textContent =
+              (indiceActual + 1) + " / " + elementosGaleria.length;
+          }
+
+          if (elementosGaleria.length > 1) {
             const anterior = document.createElement("button");
             anterior.className = "flecha-galeria flecha-anterior";
             anterior.type = "button";
             anterior.textContent = "‹";
-            anterior.setAttribute("aria-label", "Fotografía anterior");
+            anterior.setAttribute("aria-label", "Elemento anterior");
 
             const siguiente = document.createElement("button");
             siguiente.className = "flecha-galeria flecha-siguiente";
             siguiente.type = "button";
             siguiente.textContent = "›";
-            siguiente.setAttribute("aria-label", "Fotografía siguiente");
-
-            const contador = document.createElement("span");
-            contador.className = "contador-galeria";
-
-            function actualizarGaleria() {
-              imagen.src = imagenes[indiceActual];
-              contador.textContent =
-                (indiceActual + 1) + " / " + imagenes.length;
-            }
+            siguiente.setAttribute("aria-label", "Elemento siguiente");
 
             anterior.addEventListener("click", () => {
               indiceActual =
-                (indiceActual - 1 + imagenes.length) % imagenes.length;
+                (indiceActual - 1 + elementosGaleria.length) %
+                elementosGaleria.length;
               actualizarGaleria();
             });
 
             siguiente.addEventListener("click", () => {
-              indiceActual = (indiceActual + 1) % imagenes.length;
+              indiceActual =
+                (indiceActual + 1) % elementosGaleria.length;
               actualizarGaleria();
             });
 
-            actualizarGaleria();
-
-            galeria.append(anterior, siguiente, contador);
+            galeria.append(anterior, siguiente);
           }
+
+          galeria.appendChild(contador);
+          actualizarGaleria();
 
           tarjeta.appendChild(galeria);
         }
