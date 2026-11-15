@@ -29,10 +29,6 @@ collections:
                 label: "Descripción"
                 widget: "text"
               - name: "image"
-                label: "Fotografía"
-                widget: "image"
-                required: false
-                - name: "image"
                 label: "Fotografía principal"
                 widget: "image"
                 required: false
@@ -42,13 +38,13 @@ collections:
                 required: false
                 field:
                 label: "Fotografía"
-                name: "image"
-                widget: "image"
+                 name: "image"
+                 widget: "image"
               - name: "videos"
                 label: "Videos del producto"
                 widget: "list"
                 required: false
                 field:
                 label: "Video"
-                name: "video"
+                 name: "video"
                 widget: "file"
