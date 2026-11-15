@@ -28,7 +28,11 @@ collections:
               - name: "description"
                 label: "Descripción"
                 widget: "text"
-              - name: "image"
-                label: "Fotografía"
-                widget: "image"
+              - name: "images"
+                label: "Fotografías del producto"
+                widget: "list"
                 required: false
+                field:
+                  label: "Fotografía"
+                  name: "image"
+                  widget: "image"
