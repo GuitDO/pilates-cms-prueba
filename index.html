@@ -809,15 +809,13 @@
 } else {
   const video = document.createElement("video");
   video.src = elemento.ruta;
-  video.controls = true;
   video.playsInline = true;
   video.preload = "metadata";
+  video.controls = false;
   video.style.cursor = "zoom-in";
 
-  video.addEventListener("click", (evento) => {
-    if (evento.target === video) {
-      abrirVideo(elemento.ruta);
-    }
+  video.addEventListener("click", () => {
+    abrirVideo(elemento.ruta);
   });
 
   contenido.appendChild(video);
