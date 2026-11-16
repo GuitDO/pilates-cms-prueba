@@ -1,1 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Producto | Alma Pilates</title>
 
+  <style>
+    :root {
+      --crema: #f7f1e8;
+      --beige: #e9ddcd;
+      --arena: #d4bda2;
+      --marron: #715b48;
+      --oscuro: #40372f;
+      --blanco: #fffdf9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--crema);
+      color: var(--oscuro);
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 22px 7%;
+      background: var(--blanco);
+      border-bottom: 1px solid var(--beige);
+    }
+
+    .logo {
+      color: var(--marron);
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .volver {
+      display: inline-block;
+      margin: 28px 7%;
+      color: var(--marron);
+      text-decoration: none;
+    }
+
+    .producto-detalle {
+      max-width: 1100px;
+      margin: 20px auto 70px;
+      padding: 0 25px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .galeria-detalle {
+      background: var(--blanco);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .imagen-principal {
+      width: 100%;
+      height: 430px;
+      object-fit: contain;
+      display: block;
+      padding: 15px;
+    }
+
+    .miniaturas {
+      display: flex;
+      gap: 10px;
+      padding: 12px;
+      overflow-x: auto;
+    }
+
+    .miniaturas img {
+      width: 75px;
+      height: 65px;
+      object-fit: contain;
+      background: var(--crema);
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .informacion-detalle {
+      padding-top: 15px;
+    }
+
+    .informacion-detalle h1 {
+      font-size: 34px;
+      color: var(--marron);
+      margin: 0 0 20px;
+    }
+
+    .descripcion-detalle {
+      line-height: 1.8;
+      white-space: pre-line;
+      color: #6e6258;
+      font-size: 15px;
+    }
+
+    .precio-detalle {
+      font-size: 27px;
+      font-weight: bold;
+      color: var(--marron);
+      margin: 25px 0;
+    }
+
+    .boton-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 24px;
+      background: var(--marron);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background 0.2s;
+    }
+
+    .boton-whatsapp:hover {
+      background: var(--oscuro);
+    }
+
+    .sin-producto {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    @media (max-width: 750px) {
+      .producto-detalle {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 0;
+      }
+
+      .imagen-principal {
+        height: 320px;
+      }
+
+      .informacion-detalle h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Alma Pilates</a>
+  </header>
+
+  <a href="index.html#catalogo" class="volver">← Volver al catálogo</a>
+
+  <main id="detalle-producto">
+    <p class="sin-producto">Cargando producto...</p>
+  </main>
+
+  <script>
+    async function cargarDetalle() {
+      const contenedor = document.getElementById("detalle-producto");
+
+      const parametros = new URLSearchParams(window.location.search);
+      const nombreBuscado = parametros.get("nombre");
+
+      try {
+        const respuesta = await fetch("/content/products.json");
+
+        if (!respuesta.ok) {
+          throw new Error("No se pudo cargar el catálogo");
+        }
+
+        const datos = await respuesta.json();
+
+        const producto = (datos.products || []).find(
+          item => item.name === nombreBuscado
+        );
+
+        if (!producto) {
+          contenedor.innerHTML =
+            '<p class="sin-producto">No encontramos este producto.</p>';
+          return;
+        }
+
+        const imagenes = [
+          producto.image,
+          ...(Array.isArray(producto.images) ? producto.images : [])
+        ].filter((imagen, indice, lista) =>
+          imagen && lista.indexOf(imagen) === indice
+        );
+
+        const videos = Array.isArray(producto.videos)
+          ? producto.videos.filter(Boolean)
+          : [];
+
+        contenedor.innerHTML = `
+          <div class="producto-detalle">
+
+            <div class="galeria-detalle">
+              <div id="contenido-principal"></div>
+              <div class="miniaturas" id="miniaturas"></div>
+            </div>
+
+            <div class="informacion-detalle">
+              <h1>${producto.name || "Producto"}</h1>
+
+              <div class="descripcion-detalle" id="descripcion"></div>
+
+              <p class="precio-detalle" id="precio"></p>
+
+              <a class="boton-whatsapp" id="boton-whatsapp"
+                target="_blank" rel="noopener noreferrer">
+                Consultar por WhatsApp
+              </a>
+            </div>
+
+          </div>
+        `;
+
+        document.getElementById("descripcion").textContent =
+          producto.description || "";
+
+        document.getElementById("precio").textContent =
+          producto.price != null
+            ? "$" + Number(producto.price).toLocaleString("es-AR")
+            : "Consultar precio";
+
+        document.getElementById("boton-whatsapp").href =
+          "https://wa.me/5492235895836?text=" +
+          encodeURIComponent(
+            "¡Hola! Quisiera consultar por el producto: " +
+            producto.name +
+            ". ¿Me podrían dar más información?"
+          );
+
+        const elementos = [
+          ...imagenes.map(ruta => ({ tipo: "imagen", ruta })),
+          ...videos.map(ruta => ({ tipo: "video", ruta }))
+        ];
+
+        const principal = document.getElementById("contenido-principal");
+        const miniaturas = document.getElementById("miniaturas");
+
+        function mostrarElemento(indice) {
+          const elemento = elementos[indice];
+
+          principal.innerHTML = "";
+
+          if (elemento.tipo === "imagen") {
+            const img = document.createElement("img");
+            img.src = elemento.ruta;
+            img.alt = producto.name || "Producto de Pilates";
+            img.className = "imagen-principal";
+            principal.appendChild(img);
+          } else {
+            const video = document.createElement("video");
+            video.src = elemento.ruta;
+            video.controls = true;
+            video.playsInline = true;
+            video.className = "imagen-principal";
+            principal.appendChild(video);
+          }
+        }
+
+        elementos.forEach((elemento, indice) => {
+          if (elemento.tipo === "imagen") {
+            const miniatura = document.createElement("img");
+            miniatura.src = elemento.ruta;
+            miniatura.alt = "Ver fotografía " + (indice + 1);
+            miniatura.addEventListener("click", () => {
+              mostrarElemento(indice);
+            });
+            miniaturas.appendChild(miniatura);
+          } else {
+            const miniatura = document.createElement("span");
+            miniatura.textContent = "▶ Video " + (indice + 1);
+            miniatura.style.cursor = "pointer";
+            miniatura.addEventListener("click", () => {
+              mostrarElemento(indice);
+            });
+            miniaturas.appendChild(miniatura);
+          }
+        });
+
+        if (elementos.length > 0) {
+          mostrarElemento(0);
+        }
+
+      } catch (error) {
+        console.error(error);
+        contenedor.innerHTML =
+          '<p class="sin-producto">No pudimos cargar el producto.</p>';
+      }
+    }
+
+    cargarDetalle();
+  </script>
+
+</body>
+</html>
