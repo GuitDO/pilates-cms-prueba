@@ -885,8 +885,9 @@ function actualizarGaleria() {
     video.style.cursor = "zoom-in";
 
     video.addEventListener("click", () => {
-      abrirVisor(elementosGaleria, indiceActual);
-    });
+  window.location.href =
+    "producto.html?nombre=" + encodeURIComponent(producto.name);
+});
 
     contenido.appendChild(video);
   }
