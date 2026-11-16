@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "name": "Reformador de Pilates de prueba",
+      "name": "Reformer",
       "price": 1000,
       "description": "super cómodo ",
       "image": "/uploads/photoroom_20261115_163213.jpg",
@@ -16,7 +16,7 @@
     {
       "name": "Reformer con media torre",
       "price": 200,
-      "description": "",
+      "description": "excelente",
       "image": "/uploads/reformer.jpg",
       "images": [
         "/uploads/reformer1.jpg",
@@ -28,7 +28,9 @@
       "images": [
         "/uploads/photoroom_20261113_143101.jpg"
       ],
-      "name": "Ladder Barrel"
+      "name": "Ladder Barrel",
+      "price": 500,
+      "description": "Es excelente"
     }
   ]
 }
