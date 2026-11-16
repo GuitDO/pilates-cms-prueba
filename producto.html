@@ -76,6 +76,37 @@
       padding: 12px;
       overflow-x: auto;
     }
+    
+    .contenedor-principal {
+  position: relative;
+}
+
+.flecha-detalle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 253, 249, 0.9);
+  color: var(--marron);
+  font-size: 27px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.flecha-detalle:hover {
+  background: var(--beige);
+}
+
+.flecha-detalle.anterior {
+  left: 12px;
+}
+
+.flecha-detalle.siguiente {
+  right: 12px;
+}
 
     .miniaturas img {
       width: 75px;
@@ -202,10 +233,16 @@
         contenedor.innerHTML = `
           <div class="producto-detalle">
 
-            <div class="galeria-detalle">
-              <div id="contenido-principal"></div>
-              <div class="miniaturas" id="miniaturas"></div>
-            </div>
+         <div class="galeria-detalle">
+  <div class="contenedor-principal">
+    <div id="contenido-principal"></div>
+
+    <button class="flecha-detalle anterior" id="anterior" type="button">‹</button>
+    <button class="flecha-detalle siguiente" id="siguiente" type="button">›</button>
+  </div>
+
+  <div class="miniaturas" id="miniaturas"></div>
+</div>
 
             <div class="informacion-detalle">
               <h1>${producto.name || "Producto"}</h1>
@@ -288,9 +325,28 @@
           }
         });
 
-        if (elementos.length > 0) {
-          mostrarElemento(0);
-        }
+       let indiceActual = 0;
+
+if (elementos.length > 0) {
+  mostrarElemento(indiceActual);
+}
+
+function cambiarElemento(direccion) {
+  if (elementos.length <= 1) return;
+
+  indiceActual =
+    (indiceActual + direccion + elementos.length) % elementos.length;
+
+  mostrarElemento(indiceActual);
+}
+
+document.getElementById("anterior").addEventListener("click", () => {
+  cambiarElemento(-1);
+});
+
+document.getElementById("siguiente").addEventListener("click", () => {
+  cambiarElemento(1);
+});
 
       } catch (error) {
         console.error(error);
