@@ -62,13 +62,14 @@
       overflow: hidden;
     }
 
-    .imagen-principal {
-      width: 100%;
-      height: 430px;
-      object-fit: contain;
-      display: block;
-      padding: 15px;
-    }
+   .imagen-principal {
+  width: 100%;
+  height: 430px;
+  object-fit: contain;
+  display: block;
+  padding: 0;
+  background: var(--blanco);
+}
 
     .miniaturas {
       display: flex;
@@ -171,7 +172,7 @@
       }
 
       .imagen-principal {
-        height: 320px;
+        height: 350px;
       }
 
       .informacion-detalle h1 {
@@ -283,6 +284,26 @@
 
         const principal = document.getElementById("contenido-principal");
         const miniaturas = document.getElementById("miniaturas");
+
+        let inicioX = 0;
+
+principal.addEventListener("touchstart", (evento) => {
+  inicioX = evento.changedTouches[0].screenX;
+}, { passive: true });
+
+principal.addEventListener("touchend", (evento) => {
+  const finalX = evento.changedTouches[0].screenX;
+  const diferencia = finalX - inicioX;
+
+  if (Math.abs(diferencia) > 50) {
+    if (diferencia < 0) {
+      cambiarElemento(1); // Deslizar hacia la izquierda
+    } else {
+      cambiarElemento(-1); // Deslizar hacia la derecha
+    }
+  }
+}, { passive: true });
+        
 
         function mostrarElemento(indice) {
           const elemento = elementos[indice];
