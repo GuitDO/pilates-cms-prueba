@@ -298,7 +298,18 @@
             img.src = elemento.ruta;
             img.alt = producto.name || "Producto de Pilates";
             img.className = "imagen-principal";
-            principal.appendChild(img);
+
+img.style.cursor = "zoom-in";
+
+img.addEventListener("click", () => {
+  img.classList.toggle("ampliada");
+
+  img.style.cursor = img.classList.contains("ampliada")
+    ? "zoom-out"
+    : "zoom-in";
+});
+
+principal.appendChild(img);
           } else {
             const video = document.createElement("video");
             video.src = elemento.ruta;
