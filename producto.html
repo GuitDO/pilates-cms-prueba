@@ -285,24 +285,7 @@
         const principal = document.getElementById("contenido-principal");
         const miniaturas = document.getElementById("miniaturas");
 
-        let inicioX = 0;
-
-principal.addEventListener("touchstart", (evento) => {
-  inicioX = evento.changedTouches[0].screenX;
-}, { passive: true });
-
-principal.addEventListener("touchend", (evento) => {
-  const finalX = evento.changedTouches[0].screenX;
-  const diferencia = finalX - inicioX;
-
-  if (Math.abs(diferencia) > 50) {
-    if (diferencia < 0) {
-      cambiarElemento(1); // Deslizar hacia la izquierda
-    } else {
-      cambiarElemento(-1); // Deslizar hacia la derecha
-    }
-  }
-}, { passive: true });
+ 
         
 
         function mostrarElemento(indice) {
@@ -361,6 +344,21 @@ function cambiarElemento(direccion) {
   mostrarElemento(indiceActual);
 }
 
+        let inicioX = 0;
+
+principal.addEventListener("touchstart", (evento) => {
+  inicioX = evento.changedTouches[0].screenX;
+}, { passive: true });
+
+principal.addEventListener("touchend", (evento) => {
+  const finalX = evento.changedTouches[0].screenX;
+  const diferencia = finalX - inicioX;
+
+  if (Math.abs(diferencia) > 50) {
+    cambiarElemento(diferencia < 0 ? 1 : -1);
+  }
+}, { passive: true });
+        
 document.getElementById("anterior").addEventListener("click", () => {
   cambiarElemento(-1);
 });
