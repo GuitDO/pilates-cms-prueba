@@ -302,11 +302,13 @@
 img.style.cursor = "zoom-in";
 
 img.addEventListener("click", () => {
-  img.classList.toggle("ampliada");
+  const estaAmpliada = img.classList.contains("ampliada");
 
-  img.style.cursor = img.classList.contains("ampliada")
-    ? "zoom-out"
-    : "zoom-in";
+  if (estaAmpliada) {
+    img.classList.remove("ampliada");
+  } else {
+    img.classList.add("ampliada");
+  }
 });
 
 principal.appendChild(img);
