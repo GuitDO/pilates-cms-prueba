@@ -327,13 +327,15 @@ img.addEventListener("click", () => {
 });
 
 principal.appendChild(img);
-          } else {
-          const video = document.createElement("video");
-video.src = elemento.ruta;
-video.controls = true;
-video.playsInline = true;
-video.className = "imagen-principal";
-principal.appendChild(video);
+       } else {
+            const video = document.createElement("video");
+            video.src = elemento.ruta;
+            video.controls = true;
+            video.playsInline = true;
+            video.className = "imagen-principal";
+            principal.appendChild(video);
+          }
+        }
             
 
         elementos.forEach((elemento, indice) => {
